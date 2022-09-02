@@ -1,0 +1,256 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-weight: normal;
+}
+
+:root {
+    --cont-width: 1200px;
+    /* --nav-width: calc(var(--cont-width)*25/100);
+    --content-width: calc(var(--cont-width)*75/100); */
+}
+/*********КОНТЕЙНЕР***********************************/
+#container {
+    min-height: 100vh;
+    width: var(--cont-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 25% 75%;
+    border-left: 1px solid #c0c0c0;
+    border-right: 1px solid #c0c0c0;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
+}
+/*****************************************************/
+/**********НАВИГАЦИЯ******************************/
+.nav {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 1rem 0 1rem;
+}
+.nav_btn {
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
+    background-color: #ffffff;
+    height: 1.5rem;
+}
+.nav_btn_shadow {
+    box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.4);
+}
+.nav_btn {
+    margin-bottom: 0.3rem;
+    border: 1px solid #c0c0c0;
+}
+.list {
+    margin-bottom: 0.3rem;
+    height: 4rem;
+    /* padding-left: 0.5rem; */
+    border: 1px solid #c0c0c0;
+    display: flex;
+    justify-content: space-between;
+}
+.list_check {
+    padding-left: 0.5rem;
+    text-decoration: underline #c0c0c0;
+    flex-grow: 1;
+}
+.list_selected {
+    border-left: 1rem solid blue;
+    padding-left: 0;
+}
+.ul_nav {
+    display: none;
+    padding: 0;
+    margin: 0 0.5rem 0 0.5rem; 
+    list-style-type: none;
+}
+.ul_nav_hidden {
+    display: block;
+}
+.list > span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pri_high {
+    background-color: #ff0000;
+    width: 10%;
+}
+.pri_medium {
+    background-color: #ff9c0b;
+    width: 10%;
+}
+.pri_low {
+    background-color: #05cc47;
+    width: 10%;
+}
+/****************************************************/
+.content {
+    padding: 0.5rem 1rem 0 1rem;
+}
+/*******КАЛЕНДАРЬ*********************************/
+.month-calendar {
+    width: 80%;
+    box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.4);
+}
+.month {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    padding: 0rem 1rem 0.5rem 1rem;
+}
+.month li{
+    padding: 0;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+.month .prev {
+    cursor: pointer;
+    float: left;
+}
+.month .next {
+    cursor: pointer;
+    float: right;
+}
+.weekdays {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding: 0;
+    background-color: #00ab6b;
+}
+.weekdays li {
+    display: inline-block;
+    flex: 0 0 calc(100% / 7);
+    text-align: center;
+}
+.days {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+}
+.days li {
+    display: inline-block;
+    flex: 0 0 calc(100% / 7);
+    /**высота ячейки календаря**/
+    /* height: calc((var(--content-width)*26/100)/7); */
+    height: 2.5rem;
+    text-align: center;
+    border-bottom: 1px solid #c0c0c0;
+    border-right: 1px solid #c0c0c0;
+}
+.days li:nth-child(7n+1) {
+    border-left: 1px solid #c0c0c0;
+}
+.days li:nth-child(7n+6), .days li:nth-child(7n) {
+    color: #00ab6b;
+    font-weight: bold;
+}
+.date_now {
+    background-color: #f8c300;
+}
+.days p {
+    height: 50%;
+}
+.days li > div {
+    padding: 0.2rem;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2rem;
+    z-index: 0;
+}
+.days .task_low, .task_medium, .task_high {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 0.25rem;
+    z-index: -1;
+}
+.task_low {
+    background-color: #05cc47;
+}
+.task_medium {
+    background-color: #ff9c0b;
+}
+.task_high {
+    background-color: #ff0000;
+}
+.month-calendar .days .active_day {
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3) inset;
+}
+/********ЗАДАЧИ*****************/
+.tasks {
+    width: 80%;
+}
+.tasks article {
+    margin-top: 0.5rem;
+    border-bottom: 1px solid #000000;
+    box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.4);
+}
+.tasks article h3 {
+    padding: 0.4rem;
+}
+.tasks article p {
+    padding: 0.4rem;
+}
+.tasks article p:hover {
+    padding: 0.5rem;
+}
+.tasks article i {
+    padding: 0.2rem;
+}
+.tasks article > div {
+    border-top: 1px solid #c0c0c0;
+    display: flex;
+    justify-content: end;
+    gap: 0.2rem;
+    padding: 0.2rem;
+    margin-top: 0.5rem;
+}
+.tasks article .check_btn {
+    display: flex;
+    align-items: center;
+}
+.tasks article .check_btn:hover {
+    border: 1px solid #c0c0c0;
+}
+.tasks article .check {
+    background-color: #4da4c4;
+}
+.add_task_btn, .write_task_btn {
+    margin-top: 0.5rem;
+    background-color: #00b1ab;
+    border: none;
+    font-size: 0.9rem;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
+    width: 8rem;
+    height: 3rem;
+    color: #ffffff;
+}
+.add_task_btn:hover, .write_task_btn:hover {
+    filter: brightness(0.8);
+    font-size: 0.8rem;
+}
+/**********ОКНО НОВАЯ ЗАДАЧА*************************/
+.new_task {
+    width: 100%;
+    min-height: 10rem;
+    box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.4);
+    padding: 0.4rem;
+}
+.new_task > div {
+    display: flex;
+    gap: 5rem;
+}
+.new_task textarea {
+    width: 100%;
+    min-height: 10rem;
+}
+.new_task p, input {
+    margin-top: 0.5rem;
+}
+.new_task label {
+    margin-left: 0.2rem;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/dist/index.bundle.js" defer></script>
+</head>
+<body>
+    <div id="container">
+        <nav class="nav">
+                <button class="nav_btn nav_btn_shadow">КАТЕГОРИИ</button>
+                <ul class="ul_nav ul_nav_hidden">
+                    <li class="list" href="#">
+                        <div class="list_check">ВСЕ ЗАМЕТКИ</div>
+                    </li>
+                    <li class="list" href="#">
+                        <div class="list_check">ВСТРЕЧИ</div>
+                    </li>
+                    <li class="list" href="#">
+                        <div class="list_check">ЗВОНКИ</div>
+                    </li>
+                    <li class="list" href="#">
+                        <div class="list_check">ЗАДАЧИ</div>
+                    </li>
+                </ul>
+
+                <button class="nav_btn nav_btn_shadow">ПРИОРИТЕТ</button>
+                <ul class="ul_nav ul_nav_hidden">
+                    <li class="list" href="#">
+                        <div class="list_check">РАБОТА</div>
+                        <span class="pri_low pri"></span>
+                        <span class="pri_medium pri"></span>
+                        <span class="pri_high pri"></span>
+                    </li>
+                    <li class="list" href="#">
+                        <div class="list_check">ЛИЧНОЕ</div>
+                        <span class="pri_low pri"></span>
+                        <span class="pri_medium pri"></span>
+                        <span class="pri_high pri"></span>
+                    </li>
+                </ul>
+
+        </nav>
+        <main class="content">
+            <section class="calendar"></section>
+            <section class="tasks"></section>
+        </main>
+    </div>
+</body>
+</html>
