@@ -2,9 +2,9 @@ import { job_low_tasks, job_medium_tasks, job_high_tasks, pers_low_tasks,
     pers_medium_tasks, pers_high_tasks } from './tasks_in_nav.js';
 
 const btn_text = ['КАТЕГОРИИ', 'ПРИОРИТЕТ', ''];
-const chapter1 = [{type:'КАТЕГОРИИ', text:'ВСТРЕЧИ'},
-                    {type:'КАТЕГОРИИ', text:'ЗВОНКИ'},
-                    {type:'КАТЕГОРИИ', text:'ЗАДАЧИ'}];
+const chapter1 = [{type:'КАТЕГОРИИ', text:'РАБОТА'},
+                    {type:'КАТЕГОРИИ', text:'ЛИЧНОЕ'}/* ,
+                    {type:'КАТЕГОРИИ', text:'ЗАДАЧИ'} */];
 
 const chapter2 = [{type:'ПРИОРИТЕТ', text:'РАБОТА'},
                     {type:'ПРИОРИТЕТ', text:'ЛИЧНОЕ'}];

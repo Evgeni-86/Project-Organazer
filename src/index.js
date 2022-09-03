@@ -7,6 +7,7 @@ import { TasksInNav } from './tasks_in_nav.js';
 import { AddTaskBtn, AddTask, DellChild } from './add_tasks.js';
 import { WriteInArr } from './write_task.js';
 import { TasksInMonth } from './tasks_in_month.js';
+import { ShowCategory } from './show_category.js';
 
 const nav = document.querySelector('.nav');
 const calendar = document.querySelector('.calendar');
@@ -27,8 +28,6 @@ nav.addEventListener('click', function (event) {
 /*****Слушаем списки для изменения (делегирование)****/
 nav.addEventListener('click', function (event) {
   if (event.target.closest('.list_check')) {
-    /* if (event.target.parentElement.parentElement.previousElementSibling.textContent
-       == 'КАТЕГОРИИ') { }; */
       const ls = document.querySelectorAll('.list_check');
       ls.forEach(element => {
         element.classList.remove('list_selected');  
@@ -36,8 +35,8 @@ nav.addEventListener('click', function (event) {
       event.target.classList.toggle('list_selected');
       /***ЛОГИКА ДЛЯ ВЫВОДА ПО КАТЕГОРИЯМ****/
         console.log(event.target.textContent);
+        ShowCategory(event.target);
       /******/
-  
 };
 });
 /****************************************/
@@ -79,10 +78,15 @@ calendar.addEventListener('click', function (event) {
 /******СЛУШАЕМ ОТМЕТКУ О ВЫПОЛНЕНИИ***********/
 tasks.addEventListener('click', function (event) {
   if (event.target.closest('.check_btn')) {
+    const days = document.querySelector('.days');
+    const month = document.querySelector('.month_name').textContent;
+    const year = document.querySelector('.year_name').textContent;
+
     event.target.parentElement.classList.toggle('check');
     let attr = event.target.parentElement.parentElement.parentElement.
       getAttribute('id');
       CheckTask(attr);
+      TasksInMonth(year, month, days)//обновим меткина календаре
   };
 });
 /**************************************/

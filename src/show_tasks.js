@@ -37,11 +37,12 @@ function ShowTasks(year, month, day) {
         tasks.forEach(element => {
             const new_card = new NewCard();
             new_card.art.setAttribute('id', element.GetId());
-            new_card.h.textContent = element.type.toUpperCase();
+            new_card.h.textContent = element.type.toUpperCase()+' '+element.category;
             new_card.p.textContent = element.text;
             if (element.prioritet=='low') {new_card.h.style.backgroundColor='#05cc47'};
             if (element.prioritet=='medium') {new_card.h.style.backgroundColor='#ff9c0b'};
             if (element.prioritet=='high') {new_card.h.style.backgroundColor='#e43526'};
+            if (element.check==true) { new_card.check.classList.add('check') };
             cards.appendChild(new_card.getElement());
         });
 
