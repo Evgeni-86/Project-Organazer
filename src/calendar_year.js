@@ -1,7 +1,5 @@
 import { YearMonth } from './calendar_month.js';
 import { DellChild } from './add_tasks.js';
-import { monthName, DateNow} from './calendar_month.js';
-import { TasksInMonth } from './tasks_in_month.js';
 
 
 let nowDate = new Date();
@@ -23,7 +21,7 @@ function Year() {
     this.year_li_3 = document.createElement('li');
     this.year_li_1.classList.add('prev_year');
     this.year_li_2.classList.add('next_year');
-    this.year_li_3.classList.add('year_name');
+    this.year_li_3.classList.add('gen_year_name');
     this.year.appendChild(this.year_li_1);
     this.year.appendChild(this.year_li_2);
     this.year.appendChild(this.year_li_3);
@@ -38,6 +36,7 @@ function Year() {
 const yearCalendar = new Year();//создаем обьект
 
 function setYearCalendar(year) {
+    DellChild(yearCalendar.months);//очищаем обьект от месяцев
     for (let i = 0; i < 12; i++) {
         const month = YearMonth(nowYear, i);
         yearCalendar.months.appendChild(month);
@@ -53,7 +52,7 @@ function CalendarYear() {
 }
 
 function CalendarPrevYear() {
-    const now_year = document.querySelector('.year_name');
+    const now_year = document.querySelector('.gen_year_name');
     const months = document.querySelector('.months');
     DellChild(months);//очистим DOM с месяцами
     let new_year = Number(now_year.textContent);
@@ -65,7 +64,7 @@ function CalendarPrevYear() {
 };
 
 function CalendarNextYear() {
-    const now_year = document.querySelector('.year_name');
+    const now_year = document.querySelector('.gen_year_name');
     const months = document.querySelector('.months');
     DellChild(months);//очистим DOM с месяцами
     let new_year = Number(now_year.textContent);

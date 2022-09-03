@@ -63,21 +63,27 @@ function setMonthCalendar (year, month) {
         }
     };
     for (let i = 1; i <= monthDays; i++) {
-            daysText += '<li id='+i+'><p>'+i+'</p><div></div></li>';
+            daysText += '<li id='+i+' class="day"><p>'+i+'</p><div></div></li>';
     };
 //*вернем два значения, контент и с откуда начинается нумерация
     return [daysText, monthPrefix];
 }
 
-function CalendarMonth() {
+function CalendarMonth(year, month) {//также показывает при нажати на месяц из списка
+    let opening_year = nowYear;
+    let opening_month = nowMonth;
+    if (year && month) {
+        opening_year = year;
+        opening_month = monthName.indexOf(month);
+    };
     monthCalendar.month_li_1.innerHTML = '<i class="prev fa-solid fa-angles-left"></i>';
     monthCalendar.month_li_2.innerHTML = '<i class="next fa-solid fa-angles-right"></i>';
-    monthCalendar.month_li_3.textContent = monthName[nowMonth];
+    monthCalendar.month_li_3.textContent = monthName[opening_month];
     monthCalendar.month_li_4.textContent = nowYear;
-    monthCalendar.days.innerHTML = setMonthCalendar(nowYear, nowMonth)[0];
-    DateNow(nowYear, nowMonth);
+    monthCalendar.days.innerHTML = setMonthCalendar(nowYear, opening_month)[0];
+    DateNow(opening_year, nowMonth);
     //пометки задач на календарь
-    TasksInMonth(nowYear, monthName[nowMonth], monthCalendar.days);
+    TasksInMonth(opening_year, monthName[opening_month], monthCalendar.days);
     //возвращаем обьект
     DellChild(monthCalendar.weekdays);//удаляем название дней
     return monthCalendar.getElement();

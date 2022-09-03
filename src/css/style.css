@@ -17,7 +17,7 @@
     width: var(--cont-width);
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 25% 75%;
+    grid-template-columns: 20% 65% 15%;
     border-left: 1px solid #c0c0c0;
     border-right: 1px solid #c0c0c0;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
@@ -46,8 +46,7 @@
 }
 .list {
     margin-bottom: 0.3rem;
-    height: 4rem;
-    /* padding-left: 0.5rem; */
+    height: 3rem;
     border: 1px solid #c0c0c0;
     display: flex;
     justify-content: space-between;
@@ -90,14 +89,19 @@
 /****************************************************/
 .content {
     padding: 0.5rem 1rem 0 1rem;
+    height: 100vh;
+    overflow-y: auto;
 }
 .calendar {
     width: 100%;
 }
 /*******КАЛЕНДАРЬ ГОД*********************************/
 .year_calendar {
-    width: 80%;
+    width: 100%;
     box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.4);
+}
+.year_calendar .month-calendar ul:last-child li {
+    z-index: -1;
 }
 .year {
     width: 100%;
@@ -123,8 +127,7 @@
 }
 /*******КАЛЕНДАРЬ МЕСЯЦ*********************************/
 .month-calendar {
-    width: 80%;
-    height: 100%;
+    width: 100%;
     box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.4);
 }
 .month {
@@ -162,7 +165,6 @@
 }
 .days {
     width: 100%;
-    height: 70%;
     display: flex;
     flex-wrap: wrap;
     padding: 0;
@@ -190,6 +192,9 @@
 .days p {
     height: 50%;
     font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .days li > div {
     padding: 0.2rem;
@@ -221,7 +226,7 @@
 }
 /********ЗАДАЧИ*****************/
 .tasks {
-    width: 80%;
+    width: 100%;
 }
 .tasks article {
     margin-top: 0.5rem;
@@ -292,4 +297,19 @@
 }
 .new_task label {
     margin-left: 0.2rem;
+}
+/*********ЛИСТ КАЛЕНДАРЕЙ***********************************/
+.months_list {
+    height: 100vh;
+    padding: 0.5rem 1rem 0 1rem;
+    overflow-y: auto;
+}
+.months_list .days li {
+    height: 2rem;
+}
+.months_list .days p {
+    font-size: 0.8rem;
+}
+.months_list .month-calendar ul:last-child li {
+    z-index: -1;
 }
