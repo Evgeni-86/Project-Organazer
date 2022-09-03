@@ -70,7 +70,7 @@ function setMonthCalendar (year, month) {
 }
 
 function CalendarMonth() {
-    monthCalendar.month_li_1.innerHTML = '<i class="prep fa-solid fa-angles-left"></i>';
+    monthCalendar.month_li_1.innerHTML = '<i class="prev fa-solid fa-angles-left"></i>';
     monthCalendar.month_li_2.innerHTML = '<i class="next fa-solid fa-angles-right"></i>';
     monthCalendar.month_li_3.textContent = monthName[nowMonth];
     monthCalendar.month_li_4.textContent = nowYear;
@@ -79,13 +79,19 @@ function CalendarMonth() {
     //пометки задач на календарь
     TasksInMonth(nowYear, monthName[nowMonth], monthCalendar.days);
     //возвращаем обьект
+    DellChild(monthCalendar.weekdays);//удаляем название дней
     return monthCalendar.getElement();
 }
 
 //текущий день добавим ему класс и выведем задачи если месяц текущий
-function DateNow(year, month) {
+function DateNow(year, month, y_day) {
+    let days;
     if (year==nowYear && month==nowMonth) {
-        let days = monthCalendar.days.getElementsByTagName('li');
+        if (y_day) {  //показать день на годовом календаре
+            days = y_day.getElementsByTagName('li');
+        } else {
+            days = monthCalendar.days.getElementsByTagName('li');
+        };
         let now_day = days[setMonthCalendar(year, month)[1] + nowDateNumber-1];
         now_day.classList.add('date_now', 'active_day');
         tasks.appendChild(ShowTasks(year, monthName[month], now_day.id));
@@ -102,9 +108,9 @@ function CalendarPrev() {
     let year = curDate.getFullYear();
     monthCalendar.month_li_3.textContent = monthName[month];
     monthCalendar.month_li_4.textContent = year;
-    monthCalendar.days.innerHTML = '';//очищаем календарь
+    monthCalendar.days.innerHTML = '';//очищаем календарь дни
     monthCalendar.days.innerHTML = setMonthCalendar(year, month)[0];
-    /***очистим список дел*/
+    /***очистим секцию списка дел*/
     DellChild(tasks);
     /***вернулись ли на текущий месяц то отметим дату выведем задачи и метки***/
     DateNow(year, month);
@@ -116,7 +122,7 @@ function CalendarNext() {
     const year_name = document.querySelector('.year_name');
     let curDate = new Date(year_name.textContent,
         monthName.indexOf(month_name.textContent));//новый обьект будет пока содержать текущую дату
-    curDate.setMonth(curDate.getMonth()+1);//меняем месяц на предыдущий
+    curDate.setMonth(curDate.getMonth()+1);//меняем месяц на следущий
     let month = curDate.getMonth();
     let year = curDate.getFullYear();
     monthCalendar.month_li_3.textContent = monthName[month];
@@ -128,4 +134,21 @@ function CalendarNext() {
     TasksInMonth(year, monthName[month], monthCalendar.days);
 }
 
-export {CalendarMonth, CalendarPrev, CalendarNext};
+/******МЕСЯЦ ДЛЯ ГОДОВОГО КАЛЕНДАРЯ******* */
+function YearMonth(i_year, i_month) {
+    const yearMonth = new Month();//содаем обьект месяц
+    yearMonth.month_li_3.textContent = monthName[i_month];
+    yearMonth.days.innerHTML = setMonthCalendar(i_year, i_month)[0];
+    //текущий день
+    DateNow(i_year, i_month, yearMonth.days);
+    //пометки задач на календарь
+    TasksInMonth(i_year, monthName[i_month], yearMonth.days);
+    //возвращаем обьект
+    DellChild(yearMonth.weekdays);//удаляем название дней
+    return yearMonth.getElement();
+}
+
+
+
+
+export {monthName, CalendarMonth, CalendarPrev, CalendarNext, YearMonth, DateNow};

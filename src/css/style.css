@@ -6,6 +6,8 @@
 
 :root {
     --cont-width: 1200px;
+    --month-width: (100% / 3);
+
     /* --nav-width: calc(var(--cont-width)*25/100);
     --content-width: calc(var(--cont-width)*75/100); */
 }
@@ -89,9 +91,40 @@
 .content {
     padding: 0.5rem 1rem 0 1rem;
 }
-/*******КАЛЕНДАРЬ*********************************/
+.calendar {
+    width: 100%;
+}
+/*******КАЛЕНДАРЬ ГОД*********************************/
+.year_calendar {
+    width: 80%;
+    box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.4);
+}
+.year {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    padding: 0rem 1rem 0.5rem 1rem;
+}
+.months {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    gap: 5%;
+}
+.months > div {
+    flex: 0 0 30%;
+    margin-bottom: 0.5rem;
+}
+.year > li {
+    font-size: 1.5rem;
+}
+/*******КАЛЕНДАРЬ МЕСЯЦ*********************************/
 .month-calendar {
     width: 80%;
+    height: 100%;
     box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.4);
 }
 .month {
@@ -101,16 +134,16 @@
     text-align: center;
     padding: 0rem 1rem 0.5rem 1rem;
 }
-.month li{
+.month > li {
     padding: 0;
-    font-size: 1rem;
+    font-size: 1.5rem;
     text-transform: uppercase;
 }
-.month .prev {
+.month .prev, .year .prev_year {
     cursor: pointer;
     float: left;
 }
-.month .next {
+.month .next, .year .next_year {
     cursor: pointer;
     float: right;
 }
@@ -129,6 +162,7 @@
 }
 .days {
     width: 100%;
+    height: 70%;
     display: flex;
     flex-wrap: wrap;
     padding: 0;
@@ -138,7 +172,7 @@
     flex: 0 0 calc(100% / 7);
     /**высота ячейки календаря**/
     /* height: calc((var(--content-width)*26/100)/7); */
-    height: 2.5rem;
+    height: 3rem;
     text-align: center;
     border-bottom: 1px solid #c0c0c0;
     border-right: 1px solid #c0c0c0;
@@ -155,6 +189,7 @@
 }
 .days p {
     height: 50%;
+    font-size: 1rem;
 }
 .days li > div {
     padding: 0.2rem;
@@ -166,9 +201,9 @@
     z-index: 0;
 }
 .days .task_low, .task_medium, .task_high {
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 0.25rem;
+    width: calc(100% / 3);
+    height: 50%;
+    border-radius: 2px;
     border: 1px solid #000000;
     z-index: -1;
 }

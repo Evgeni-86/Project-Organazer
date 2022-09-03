@@ -8,10 +8,12 @@ import { AddTaskBtn, AddTask, DellChild } from './add_tasks.js';
 import { WriteInArr } from './write_task.js';
 import { TasksInMonth } from './tasks_in_month.js';
 import { ShowCategory } from './show_category.js';
+import { CalendarYear, CalendarPrevYear, CalendarNextYear } from './calendar_year.js';
 
 const nav = document.querySelector('.nav');
 const calendar = document.querySelector('.calendar');
 const tasks = document.querySelector('.tasks');
+const content = document.querySelector('.content');
 /*******************************/
 TasksInNav();//показать приоритет количество задач
 /***Контент********************************/
@@ -19,9 +21,18 @@ calendar.appendChild(CalendarMonth()); //календарь месяц
 /*****слушаем кнопки меню (делегирование)**************/
 nav.addEventListener('click', function (event) {
   if (event.target.closest('.nav_btn')) {
-    event.target.nextElementSibling.classList.toggle('ul_nav_hidden');
-    event.target.classList.toggle('nav_btn_shadow');
-};
+
+    if (event.target.id=='year_cal') {
+      DellChild(calendar);
+      DellChild(tasks);
+      calendar.appendChild(CalendarYear());
+    }
+    else {
+      event.target.nextElementSibling.classList.toggle('ul_nav_hidden');
+      event.target.classList.toggle('nav_btn_shadow');
+    };
+
+  };
 });
 /*************************************/
 
@@ -42,37 +53,50 @@ nav.addEventListener('click', function (event) {
 /****************************************/
 
 /****Слушаем календарь (делегирование)*******************************/
-/**загрузка задач на выбраную дату***/
+//загрузка задач на выбраную дату
 calendar.addEventListener('click', function (event) {
   if (event.target.closest('.days')) {
     let day = event.target.parentElement.id;
-/**если календарь на текущий месяц найдем класс рамки************/
+//если календарь на текущий месяц найдем класс рамки
     let a = document.querySelector('.active_day');
     if(a) {
       a.classList.remove('active_day');//удаляем клас если есть
     };
-/******************************************************************************/
-      event.target.parentElement.classList.add('active_day');//рамка активного дня
-    const month = document.querySelector('.month_name');
+
+    event.target.parentElement.classList.add('active_day');//рамка активного дня
+    const month_cont = event.target.parentElement.parentElement.parentElement;
+    const month_name = month_cont.querySelector('.month_name');
     const year = document.querySelector('.year_name');
     //если дочерние элементы уже есть, то удаляем
     DellChild(tasks);
     /******************************/
-    tasks.appendChild(ShowTasks(year.textContent, month.textContent, day));
+    tasks.appendChild(ShowTasks(year.textContent, month_name.textContent, day));
     /****кнопка для добавления задачи*****/
     tasks.firstChild.appendChild(AddTaskBtn());
   };
 });
-/******************************************/
+/*****ПЕРЕКЛЮЧЕНИЕ КАЛЕНДАРЕЙ*****************************/
 calendar.addEventListener('click', function (event) {
   if (event.target.closest('.month')) {
     if (event.target.classList.contains('next')) {
       CalendarNext();//следующий месяц
     };
-    if (event.target.classList.contains('prep')) {
+    if (event.target.classList.contains('prev')) {
       CalendarPrev();//предыдущий месяц
     };
   };
+
+  if (event.target.closest('.year')) {
+    if (event.target.classList.contains('next_year')) {
+      console.log(event.target);
+      CalendarNextYear();//следующий год
+    };
+    if (event.target.classList.contains('prev_year')) {
+      console.log(event.target);
+      CalendarPrevYear();//предыдущий год
+    };
+  };
+
 });
 /****************************************************/
 /******СЛУШАЕМ ОТМЕТКУ О ВЫПОЛНЕНИИ***********/

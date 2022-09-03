@@ -10,7 +10,7 @@ function ShowCategory(target) {
         == 'КАТЕГОРИИ') { 
             /****ВЫБИРАЕМ ЗАПИСИ ПО ТИПУ******/
             if (target.textContent == 'ВСЕ ЗАМЕТКИ') {
-                TasksInMonth(year, month, days)//обновим меткина календаре
+                TasksInMonth(year, month, days)//обновим метки на календаре
             };         
             if (target.textContent == 'РАБОТА') {
                 user_tasks = tasksArr.filter(function(e) {return(e.type == 'работа')});
