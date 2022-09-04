@@ -15,6 +15,14 @@ function OpenMonth(year, month) {
     const calendar = document.querySelector('.calendar');    
     DellChild(calendar);
     calendar.appendChild(CalendarMonth(year, month));
+    //сделать активной ВСЕ ЗАМЕТКИ
+    const ls = document.querySelectorAll('.list_check');
+    ls.forEach(element => {
+      element.classList.remove('list_selected');  
+    });          
+    const ul = document.querySelector('.ul_nav');//первый список навигации
+    const div = ul.querySelector('.list_check');//первый div элемента списка
+    div.classList.add('list_selected');
 };
 
 

@@ -14,6 +14,8 @@ const nav = document.querySelector('.nav');
 const calendar = document.querySelector('.calendar');
 const tasks = document.querySelector('.tasks');
 const months_list = document.querySelector('.months_list');
+const nav_lists = document.querySelector('.ul_nav');//первый список навигации
+const nav_lists_div = nav_lists.querySelectorAll('.list_check');//
 /*******************************/
 TasksInNav();//показать приоритет количество задач
 /***Контент********************************/
@@ -35,19 +37,17 @@ nav.addEventListener('click', function (event) {
   };
 });
 /*************************************/
-/*****Слушаем списки для вывода по категориям (делегирование)****/
-nav.addEventListener('click', function (event) {
-  if (event.target.closest('.list_check')) {
-      const ls = document.querySelectorAll('.list_check');
-      ls.forEach(element => {
-        element.classList.remove('list_selected');  
-      });          
-      event.target.classList.toggle('list_selected');
+/*****Слушаем списки для вывода по категориям****/
+nav_lists_div.forEach(element => {
+  element.onclick = function() {
+      //удалим выделения с кнопок меню
+      nav_lists_div.forEach(elem => {
+        elem.classList.remove('list_selected');  
+      });
+      element.classList.add('list_selected');    
       /***ЛОГИКА ДЛЯ ВЫВОДА ПО КАТЕГОРИЯМ****/
-        console.log(event.target.textContent);
-        ShowCategory(event.target);
-      /******/
-};
+      ShowCategory(element);
+  };
 });
 /****************************************/
 /****Слушаем календарь (делегирование)*******************************/
@@ -183,8 +183,8 @@ months_list.addEventListener('click', function (event) {
     if (event.target.classList.contains('days')) {
       let target = event.target.parentElement;
       const target_month = target.querySelector('.month_name');
-      const target_year = document.querySelector('.year_name');//если один мес
-      OpenMonth(target_year.textContent, target_month.textContent);
+      const target_year = document.querySelector('.year_name');
+      OpenMonth(target_year.textContent, target_month.textContent);      
     };
   };
 });

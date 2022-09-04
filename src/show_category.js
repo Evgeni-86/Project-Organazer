@@ -4,13 +4,13 @@ import { TasksInMonth } from './tasks_in_month.js';
 function ShowCategory(target) {
     let user_tasks;
 
-//Если открыт годовой календарь*********************************/
 if (target.parentElement.parentElement.previousElementSibling.textContent
     == 'КАТЕГОРИИ') { 
-
-    const gen_year = document.querySelector('.gen_year_name');
+//Если открыт годовой календарь*********************************/
+const gen_year = document.querySelector('.gen_year_name');
     if (gen_year) {
-        const months = document.querySelectorAll('.month-calendar');
+        const months_cont = document.querySelector('.year_calendar');
+        const months = months_cont.querySelectorAll('.month-calendar');//без боковых календарей
         months.forEach(element => {
             let month_name = element.querySelector('.month_name').textContent;
             let days_li = element.querySelector('.days');

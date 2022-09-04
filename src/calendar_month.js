@@ -80,20 +80,24 @@ function CalendarMonth(year, month) {//также показывает при н
     monthCalendar.month_li_3.textContent = monthName[opening_month];
     monthCalendar.month_li_4.textContent = nowYear;
     monthCalendar.days.innerHTML = setMonthCalendar(nowYear, opening_month)[0];
-    DateNow(opening_year, nowMonth);
+    DateNow(opening_year, opening_month);
     //пометки задач на календарь
     TasksInMonth(opening_year, monthName[opening_month], monthCalendar.days);
+    //сделать активной ВСЕ ЗАМЕТКИ
+    const ul = document.querySelector('.ul_nav');//первый список навигации
+    const div = ul.querySelector('.list_check');//первый div элемента списка
+    div.classList.add('list_selected');    
+    DellChild(monthCalendar.weekdays);//удаляем название дней из обьекта
     //возвращаем обьект
-    DellChild(monthCalendar.weekdays);//удаляем название дней
     return monthCalendar.getElement();
 }
 
 //текущий день добавим ему класс и выведем задачи если месяц текущий
-function DateNow(year, month, y_day) {
+function DateNow(year, month, m_day) {
     let days;
     if (year==nowYear && month==nowMonth) {
-        if (y_day) {  //показать день на годовом календаре
-            days = y_day.getElementsByTagName('li');
+        if (m_day) {  //показать текущий день в месяце на годовом календаре
+            days = m_day.getElementsByTagName('li');
         } else {
             days = monthCalendar.days.getElementsByTagName('li');
         };

@@ -3,8 +3,6 @@ import { DellChild } from './add_tasks.js';
 
 
 let nowDate = new Date();
-let nowDateNumber = nowDate.getDate();//текущее число месяца
-let nowMonth = nowDate.getMonth(); //Получаем текущий месяц(номер)
 let nowYear = nowDate.getFullYear(); //Получаем текущий год
 
 function Year() {
