@@ -2,7 +2,6 @@ import { ShowTasks } from "./show_tasks";
 import { TasksInMonth } from './tasks_in_month.js';
 import { DellChild } from './add_tasks.js';
 
-
 const tasks = document.querySelector('.tasks');
 /*****СТРАНИЦАЯ С КАЛЕНДАРЕМ НА МЕСЯЦ*************************/
 const days_arr = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
@@ -153,8 +152,6 @@ function YearMonth(i_year, i_month) {
     DellChild(yearMonth.weekdays);//удаляем название дней
     return yearMonth.getElement();
 }
-
-
 
 
 export {monthName, CalendarMonth, CalendarPrev, CalendarNext, YearMonth, DateNow};

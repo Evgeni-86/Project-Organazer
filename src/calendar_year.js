@@ -7,9 +7,7 @@ let nowDateNumber = nowDate.getDate();//текущее число месяца
 let nowMonth = nowDate.getMonth(); //Получаем текущий месяц(номер)
 let nowYear = nowDate.getFullYear(); //Получаем текущий год
 
-
 function Year() {
-
     this.year_cal = document.createElement('div');
     this.year_cal.classList.add('year_calendar');
     this.year = document.createElement('ul');
@@ -30,8 +28,7 @@ function Year() {
     /**Строим список дней недели и возвращаем обьект**/
     this.getElement = function () {
         return this.year_cal;
-    };
-    
+    };  
 };
 const yearCalendar = new Year();//создаем обьект
 

@@ -9,8 +9,6 @@ function DellChild(parant) {
 
 function AddTaskBtn() {
     const add_btn = document.createElement('button');
-    add_btn.classList.add('add_task_btn');
-    add_btn.textContent = 'добавить задачу';
     return add_btn;
 }
 
@@ -88,7 +86,7 @@ function AddTask() {
     this.input_category_1.id = 'input_category_1';
     this.lable6 = document.createElement('label');
     this.lable6.setAttribute('for', 'input_category_1');
-    this.lable6.textContent = 'Высокий';
+    this.lable6.textContent = 'Встреча';
 
     this.input_category_2 = document.createElement('input');
     this.input_category_2.type = 'radio';
@@ -97,7 +95,7 @@ function AddTask() {
     this.input_category_2.id = 'input_category_2';
     this.lable7 = document.createElement('label');
     this.lable7.setAttribute('for', 'input_category_2');
-    this.lable7.textContent = 'Средний';
+    this.lable7.textContent = 'Звонок';
 
     this.input_category_3 = document.createElement('input');
     this.input_category_3.type = 'radio';
@@ -107,7 +105,7 @@ function AddTask() {
     this.input_category_3.checked = true;
     this.lable8 = document.createElement('label');
     this.lable8.setAttribute('for', 'input_category_3');
-    this.lable8.textContent = 'Низкий';
+    this.lable8.textContent = 'Задача';
 
 /*********************************************** */
     this.text_area = document.createElement('textarea');

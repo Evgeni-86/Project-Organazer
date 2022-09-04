@@ -16,12 +16,15 @@ class NewCard {
         this.h = document.createElement('h3');
         this.p = document.createElement('p');
         this.div = document.createElement('div');
-        this.check = document.createElement('div');
+        this.del = document.createElement('button');
+        this.del.classList.add('del_btn');
+        this.del.textContent = 'Удалить';
+        this.check = document.createElement('button');
         this.check.classList.add('check_btn');
-        this.check.innerHTML = 
-        '<p>Выполнено</p><i class="fa-regular fa-circle-check"></i>';
+        this.check.textContent = 'Выполнено';
         this.art.appendChild(this.h);
         this.art.appendChild(this.p);
+        this.div.appendChild(this.del);
         this.div.appendChild(this.check);
         this.art.appendChild(this.div);
     }
@@ -53,10 +56,15 @@ function ShowTasks(year, month, day) {
 /******ИЗМЕНЯЕМ ОТМЕТКУ О ВЫПОЛНЕНИИ*********/
 function CheckTask(attr) {
     let task = tasksArr.find(item => item.GetId() == attr);
-    console.log(task);
     task.check==false ? task.check=true : task.check = false;
-    console.log(task);
+};
+/********************************************/
+/******УДАЛИТЬ ЗАМЕТКУ*********/
+function DelTask(attr) {
+    let task = tasksArr.find(item => item.GetId() == attr);
+    tasksArr.splice(tasksArr.indexOf(task), 1);
+    console.log(tasksArr);
 };
 /********************************************/
 
-export {ShowTasks, CheckTask}
+export {ShowTasks, CheckTask, DelTask}

@@ -1,7 +1,6 @@
 import './css/style.css';
 import './css/iconsfonts.css';
-import { ShowTasks, CheckTask } from './show_tasks.js';
-import { PrintNav } from './show_nav.js';
+import { ShowTasks, CheckTask, DelTask } from './show_tasks.js';
 import { CalendarMonth, CalendarNext, CalendarPrev } from './calendar_month.js';
 import { TasksInNav } from './tasks_in_nav.js';
 import { AddTaskBtn, AddTask, DellChild } from './add_tasks.js';
@@ -36,8 +35,7 @@ nav.addEventListener('click', function (event) {
   };
 });
 /*************************************/
-
-/*****Слушаем списки для изменения (делегирование)****/
+/*****Слушаем списки для вывода по категориям (делегирование)****/
 nav.addEventListener('click', function (event) {
   if (event.target.closest('.list_check')) {
       const ls = document.querySelectorAll('.list_check');
@@ -52,12 +50,10 @@ nav.addEventListener('click', function (event) {
 };
 });
 /****************************************/
-
 /****Слушаем календарь (делегирование)*******************************/
 //загрузка задач на выбраную дату
 calendar.addEventListener('click', function (event) {
   if (event.target.closest('.day')) {
-
       let day = event.target.parentElement.id;
       console.log(day);
   //если календарь на текущий месяц найдем класс рамки
@@ -65,7 +61,6 @@ calendar.addEventListener('click', function (event) {
       if(a) {
         a.classList.remove('active_day');//удаляем клас если есть
       };
-  
       event.target.parentElement.classList.add('active_day');//рамка активного дня
       const month_cont = event.target.parentElement.parentElement.parentElement;
       const month_name = month_cont.querySelector('.month_name');
@@ -75,8 +70,10 @@ calendar.addEventListener('click', function (event) {
       /******************************/
       tasks.appendChild(ShowTasks(year.textContent, month_name.textContent, day));
       /****кнопка для добавления задачи*****/
-      tasks.firstChild.appendChild(AddTaskBtn());
-        
+      let btnAdd = AddTaskBtn()
+      btnAdd.textContent = 'добавить задачу';
+      btnAdd.classList.add('add_task_btn');
+      tasks.firstChild.appendChild(btnAdd);
   };
 });
 /*****ПЕРЕКЛЮЧЕНИЕ КАЛЕНДАРЕЙ*****************************/
@@ -106,29 +103,42 @@ calendar.addEventListener('click', function (event) {
 /******СЛУШАЕМ ОТМЕТКУ О ВЫПОЛНЕНИИ***********/
 tasks.addEventListener('click', function (event) {
   if (event.target.closest('.check_btn')) {
-    const days = document.querySelector('.days');
-    const month = document.querySelector('.month_name').textContent;
-    const year = document.querySelector('.year_name').textContent;
-
-    event.target.parentElement.classList.toggle('check');
-    let attr = event.target.parentElement.parentElement.parentElement.
-      getAttribute('id');
-      CheckTask(attr);
+      const days = document.querySelector('.days');
+      const month = document.querySelector('.month_name').textContent;
+      const year = document.querySelector('.year_name').textContent;
+      event.target.classList.toggle('check');
+      let attr = event.target.parentElement.parentElement.getAttribute('id');
+        CheckTask(attr);
+        TasksInMonth(year, month, days)//обновим меткина календаре
+  };
+});
+/**************************************/
+/******СЛУШАЕМ ОТМЕТКУ УДАЛИТЬ***********/
+tasks.addEventListener('click', function (event) {
+  if (event.target.closest('.del_btn')) {
+      const days = document.querySelector('.days');
+      const month = document.querySelector('.month_name').textContent;
+      const year = document.querySelector('.year_name').textContent;
+      event.target.classList.toggle('check');
+      let attr = event.target.parentElement.parentElement.getAttribute('id');
+      DelTask(attr);
       TasksInMonth(year, month, days)//обновим меткина календаре
   };
 });
 /**************************************/
+
 /******СЛУШАЕМ КНОПКИ ДОБАВИТЬ ЗАМЕТКУ******************/
 tasks.addEventListener('click', function (event) {
   if (event.target.closest('.add_task_btn')) {
-    /***только если еще нет**/
+    /***открываем форму только если еще ее нет**/
     if (!event.target.parentElement.nextElementSibling) {
       tasks.firstChild.remove();//удалим кнопку
       const new_task = new AddTask();
       tasks.appendChild(new_task.newTask);
+      //кнопка с новым классом для записи заметки
       let btn = AddTaskBtn();
-      btn.classList.remove('add_task_btn');
-      btn.classList.add('write_task_btn');//кнопка с новым классом
+      btn.textContent = 'сохранить задачу';
+      btn.classList.add('write_task_btn');
       btn.setAttribute('type', 'submit');
       new_task.newTask.appendChild(btn);
       };
@@ -154,7 +164,6 @@ tasks.addEventListener('click', function (event) {
   };
 });
 /****************************************************/
-
 /********ОТКРЫТЬ МЕСЯЦ**********************/
 calendar.addEventListener('click', function (event) {
   if (event.target.closest('.year_calendar')) {
@@ -168,7 +177,6 @@ calendar.addEventListener('click', function (event) {
   };
 });
 /*********************************/
-
 /*******СЛУШАЕМ ЛИСТ КАЛЕНДАРЕЙ СПРАВА**************** */
 months_list.addEventListener('click', function (event) {
   if (event.target.closest('.months_list')) {
