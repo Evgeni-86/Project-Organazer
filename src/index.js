@@ -113,6 +113,7 @@ tasks.addEventListener('click', function (event) {
       let attr = event.target.parentElement.parentElement.getAttribute('id');
         CheckTask(attr);
         TasksInMonth(year, month, days)//обновим меткина календаре
+        OpenMonthList(year);//обновляем метки в боковой панели
   };
 });
 /**************************************/
@@ -126,6 +127,7 @@ tasks.addEventListener('click', function (event) {
       let attr = event.target.parentElement.parentElement.getAttribute('id');
       DelTask(attr);
       TasksInMonth(year, month, days)//обновим меткина календаре
+      OpenMonthList(year);//обновляем метки в боковой панели
   };
 });
 /**************************************/
@@ -164,6 +166,7 @@ tasks.addEventListener('click', function (event) {
     DellChild(tasks);
     WriteInArr(year, month, day, type, category, prior, text);
     TasksInMonth(year, month, days)//обновим меткина календаре
+    OpenMonthList(year);//обновляем метки в боковой панели
   };
 });
 /****************************************************/

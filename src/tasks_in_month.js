@@ -21,22 +21,22 @@ function TasksInMonth(year, month, days, arr) {
         DellChild(li[i].lastElementChild);//очистим предыдущие метки
         /**пометки о задачах***/
         if (taskLow) {
-                const div = document.createElement('div');
-                div.classList.add('task_low');
-                if (taskLow_check) { div.style.border='none' };
-                li[i].lastElementChild.appendChild(div);
+            const div = document.createElement('div');
+            div.classList.add('task_low');
+            if (taskLow_check) { div.style.cssText = 'width: 30%; height: 100%;' };
+            li[i].lastElementChild.appendChild(div);
             };
         if (taskMedium) {
-                const div = document.createElement('div');
-                div.classList.add('task_medium');
-                if (taskMedium_check) { div.style.border='none' };
-                li[i].lastElementChild.appendChild(div);
+            const div = document.createElement('div');
+            div.classList.add('task_medium');
+            if (taskMedium_check) { div.style.cssText = 'width: 30%; height: 100%;' };
+            li[i].lastElementChild.appendChild(div);
             };
         if (taskHigh) { 
-                const div = document.createElement('div');
-                div.classList.add('task_high');
-                if (taskHigh_check) { div.style.border='none' };
-                li[i].lastElementChild.appendChild(div);
+            const div = document.createElement('div');
+            div.classList.add('task_high');
+            if (taskHigh_check) { div.style.cssText = 'width: 30%; height: 100%;' };
+            li[i].lastElementChild.appendChild(div);
             };
     };
 };
