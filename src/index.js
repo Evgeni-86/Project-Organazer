@@ -20,13 +20,16 @@ const nav_lists_div = nav_lists.querySelectorAll('.list_check');//
 TasksInNav();//показать приоритет количество задач
 /***Контент********************************/
 calendar.appendChild(CalendarMonth()); //календарь месяц
-/*****слушаем кнопки меню (делегирование)**************/
+months_list.style.display='none';//скроем правую панел при загрузке
+/*****Открываем списки меню и ОТКРЫТЬ КАЛЕНДАРЬ НА ГОД**************/
 nav.addEventListener('click', function (event) {
   if (event.target.closest('.nav_btn')) {
 
     if (event.target.id=='year_cal') {
       DellChild(calendar);
       DellChild(tasks);
+      DellChild(months_list);
+      months_list.style.display='none';
       calendar.appendChild(CalendarYear());
     }
     else {
@@ -170,7 +173,8 @@ calendar.addEventListener('click', function (event) {
     if (event.target.classList.contains('days')) {
       let target = event.target.parentElement;
       const target_month = target.querySelector('.month_name');
-      const target_year = document.querySelector('.gen_year_name');//если весь кол
+      const target_year = document.querySelector('.gen_year_name');//если весь кален
+      months_list.style.display='';
       OpenMonthList(target_year.textContent);
       OpenMonth(target_year.textContent, target_month.textContent);
     };
