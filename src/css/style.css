@@ -193,7 +193,7 @@
     font-weight: bold;
 }
 .date_now {
-    background-color: #f8c300;
+    box-shadow: 0px 0px 6px 0px #f8c300 inset;
 }
 .days p {
     height: 50%;
@@ -270,9 +270,21 @@
     cursor: pointer;
     float: right;
 }
-.add_task_btn:hover, .write_task_btn:hover {
+.add_task_btn:hover, .write_task_btn:hover, .del_task_btn:hover {
     filter: brightness(0.9);
     font-size: 0.95rem;
+}
+.del_task_btn {
+    cursor: pointer;
+    float: left;
+    margin-top: 2rem;
+    border: none;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+    font-size: 1rem;
+    background-color: #00b1ab;
+    width: 12rem;
+    height: 1.5rem;
 }
 /**********ОКНО НОВАЯ ЗАДАЧА*************************/
 .new_task {

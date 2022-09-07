@@ -43,7 +43,6 @@ function TasksInNav() {
         pers_medium_tasks, pers_high_tasks];
 
 
-    console.log(arr);
     const pri = document.querySelectorAll('.pri');  
         for (let i = 0; i < pri.length; i++) {
             pri[i].textContent = arr[i].length;

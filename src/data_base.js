@@ -1,5 +1,6 @@
-let tasksArr = [
-    {
+let tasksArr = [];
+
+tasksArr =  [  {
         type: 'работа',
         category: 'встречи',
         date: '2022-август-1',
@@ -7,6 +8,7 @@ let tasksArr = [
         time: 1,
         check: false,
         prioritet: 'low',
+        del: false,
         GetId() {
             return(this.time);
         }
@@ -19,6 +21,7 @@ let tasksArr = [
         time: 2,
         check: false,
         prioritet: 'medium',
+        del: false,
         GetId() {
             return(this.time);
         }
@@ -31,26 +34,15 @@ let tasksArr = [
         time: 3,
         check: false,
         prioritet: 'high',
+        del: false,
         GetId() {
             return(this.time);
         }
     },
 ];
 
-/****ТРЕТИЙ СПИСОК****/
-let ul3 = [
-    {
-        name: 'з1',
-        text: 'a',
-    },
-    {
-        name: 'з2',
-        text: 'b',
-    },
-    {
-        name: 'з3',
-        text: 'c',
-    },
-]
 
-export {tasksArr, ul3}
+
+
+
+export {tasksArr}

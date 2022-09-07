@@ -1,6 +1,6 @@
 import { ShowTasks } from "./show_tasks";
 import { TasksInMonth } from './tasks_in_month.js';
-import { DellChild } from './add_tasks.js';
+import { DellChild, AddTaskBtn } from './add_tasks.js';
 
 const tasks = document.querySelector('.tasks');
 /*****СТРАНИЦАЯ С КАЛЕНДАРЕМ НА МЕСЯЦ*************************/
@@ -103,7 +103,8 @@ function DateNow(year, month, m_day) {
         };
         let now_day = days[setMonthCalendar(year, month)[1] + nowDateNumber-1];
         now_day.classList.add('date_now', 'active_day');
-        tasks.appendChild(ShowTasks(year, monthName[month], now_day.id));
+        DellChild(tasks);
+        tasks.appendChild(ShowTasks(year, monthName[month], now_day.id));       
     };
 }
 

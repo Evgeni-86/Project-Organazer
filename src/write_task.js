@@ -1,4 +1,4 @@
-import { tasksArr } from './data_base.js';//Массив с задачами
+import { tasksArr, WriteInLocalStorage } from './data_base.js';//Массив с задачами
 import { TasksInNav } from './tasks_in_nav.js';//отображение приоритетов
 
 /********ЗАПИСЬ ЗАМЕТКИ В МАССИВ************************/
@@ -14,16 +14,13 @@ function WriteInArr(year, month, day, type, category, prior, text) {
         text: text,
         time: time,
         check: false,
-
-        GetId() {
-            return(this.time);
-            }
+        del: false,
         };
     
     tasksArr.push(new_task);
-    TasksInNav();
-    console.log(tasksArr);
-    
+    localStorage.base = JSON.stringify(tasksArr);
+
+    TasksInNav();    
 }
 /*******************************************************/
 

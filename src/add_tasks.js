@@ -12,6 +12,18 @@ function AddTaskBtn() {
     return add_btn;
 }
 
+function BtnAddTask() {
+    /****кнопка для добавления задачи если есть день выделен*****/
+    const calendar = document.querySelector('.calendar');
+    const day_activ = calendar.getElementsByClassName('.active_day');
+    if (day_activ) {
+        const btnAdd = AddTaskBtn()
+        btnAdd.textContent = 'добавить задачу';
+        btnAdd.classList.add('add_task_btn');
+        return btnAdd;
+    };
+}
+
 function AddTask() {
     this.newTask = document.createElement('form');
     this.div0 = document.createElement('div');
@@ -155,6 +167,6 @@ function AddTask() {
 }
 
 
-export {AddTask, AddTaskBtn, DellChild};
+export {AddTask, AddTaskBtn, DellChild, BtnAddTask};
 
 

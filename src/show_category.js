@@ -39,7 +39,10 @@ const gen_year = document.querySelector('.gen_year_name');
                 user_tasks = tasksArr.filter(function(e) {return(e.category == 'задачи')});
                 TasksInMonth(gen_year.textContent, month_name, days_li, user_tasks)//обновим меткина календаре
             };
-            
+            if (target.textContent == 'НА УДАЛЕНИЕ') {
+                user_tasks = tasksArr.filter(function(e) {return(e.del == true)});
+                TasksInMonth(gen_year.textContent, month_name, days_li, user_tasks)//обновим меткина календаре
+            };
 
         });
     }
@@ -72,6 +75,10 @@ else  {
         };
         if (target.textContent == 'ЗАДАЧИ') {
             user_tasks = tasksArr.filter(function(e) {return(e.category == 'задачи')});
+            TasksInMonth(year, month, days, user_tasks)//обновим меткина календаре
+        };
+        if (target.textContent == 'НА УДАЛЕНИЕ') {
+            user_tasks = tasksArr.filter(function(e) {return(e.del == true)});
             TasksInMonth(year, month, days, user_tasks)//обновим меткина календаре
         };
     };
