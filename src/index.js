@@ -35,9 +35,8 @@ nav.addEventListener('click', function (event) {
     else {
       event.target.nextElementSibling.classList.toggle('ul_nav_hidden');
       event.target.classList.toggle('nav_btn_shadow');
-    };
-
-  };
+    }
+  }
 });
 /*************************************/
 /*****Слушаем списки для вывода по категориям****/
@@ -62,7 +61,7 @@ calendar.addEventListener('click', function (event) {
       let a = document.querySelector('.active_day');
       if(a) {
         a.classList.remove('active_day');//удаляем клас если есть
-      };
+      }
       event.target.parentElement.classList.add('active_day');//рамка активного дня
       const month_cont = event.target.parentElement.parentElement.parentElement;
       const month_name = month_cont.querySelector('.month_name');
@@ -70,30 +69,29 @@ calendar.addEventListener('click', function (event) {
       //если дочерние элементы уже есть, то удаляем
       DellChild(tasks);
       tasks.appendChild(ShowTasks(year.textContent, month_name.textContent, day));
-  };
+  }
 });
 /*****ПЕРЕКЛЮЧЕНИЕ КАЛЕНДАРЕЙ*****************************/
 calendar.addEventListener('click', function (event) {
   if (event.target.closest('.month')) {
     if (event.target.classList.contains('next')) {
       CalendarNext();//следующий месяц
-    };
+    }
     if (event.target.classList.contains('prev')) {
       CalendarPrev();//предыдущий месяц
-    };
-  };
+    }
+  }
 
   if (event.target.closest('.year')) {
     if (event.target.classList.contains('next_year')) {
       console.log(event.target);
       CalendarNextYear();//следующий год
-    };
+    }
     if (event.target.classList.contains('prev_year')) {
       console.log(event.target);
       CalendarPrevYear();//предыдущий год
-    };
-  };
-
+    }
+  }
 });
 /****************************************************/
 /******СЛУШАЕМ ОТМЕТКУ О ВЫПОЛНЕНИИ***********/
@@ -110,7 +108,7 @@ tasks.addEventListener('click', function (event) {
         OpenMonthList(year);//обновляем метки в боковой панели
         DellChild(tasks);
         tasks.appendChild(ShowTasks(year, month, day));
-  };
+  }
 });
 /**************************************/
 /******СЛУШАЕМ ОТМЕТКУ УДАЛИТЬ***********/
@@ -122,7 +120,7 @@ tasks.addEventListener('click', function (event) {
       event.target.classList.toggle('check');
       let attr = event.target.parentElement.parentElement.getAttribute('id');
       DelTask(attr);
-  };
+  }
 });
 /**************************************/
 /******СЛУШАЕМ УДАЛИТЬ ОТМЕЧЕНЫЕ НАВСЕГДА***********/
@@ -138,7 +136,7 @@ tasks.addEventListener('click', function (event) {
       OpenMonthList(year);//обновляем метки в боковой панели
       DellChild(tasks);
       tasks.appendChild(ShowTasks(year, month, day));
-  };
+  }
 });
 /**************************************/
 
@@ -156,8 +154,8 @@ tasks.addEventListener('click', function (event) {
       btn.classList.add('write_task_btn');
       btn.setAttribute('type', 'submit');
       new_task.newTask.appendChild(btn);
-      };
-  };
+      }
+  }
 });
 //Кнопка для записи задачи
 tasks.addEventListener('click', function (event) {
@@ -179,7 +177,7 @@ tasks.addEventListener('click', function (event) {
     OpenMonthList(year);//обновляем метки в боковой панели
     DellChild(tasks);
     tasks.appendChild(ShowTasks(year, month, day));
-  }; 
+  }
 });
 /****************************************************/
 /********ОТКРЫТЬ МЕСЯЦ ИЗ ГОДА**********************/
@@ -193,8 +191,8 @@ calendar.addEventListener('click', function (event) {
       OpenMonthList(target_year.textContent);
       DellChild(tasks);
       OpenMonth(target_year.textContent, target_month.textContent);
-    };
-  };
+    }
+  }
 });
 /*********************************/
 /*******СЛУШАЕМ ЛИСТ КАЛЕНДАРЕЙ СПРАВА**************** */
@@ -206,6 +204,6 @@ months_list.addEventListener('click', function (event) {
       const target_year = document.querySelector('.year_name');
       DellChild(tasks);
       OpenMonth(target_year.textContent, target_month.textContent);    
-    };
-  };
+    }
+  }
 });
