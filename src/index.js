@@ -9,6 +9,7 @@ import { TasksInMonth } from './tasks_in_month.js';
 import { ShowCategory } from './show_category.js';
 import { CalendarYear, CalendarPrevYear, CalendarNextYear } from './calendar_year.js';
 import { OpenMonth, OpenMonthList } from './open_month_list.js';
+import { FormValid } from './form_valid.js';
 
 const nav = document.querySelector('.nav');
 const calendar = document.querySelector('.calendar');
@@ -161,22 +162,24 @@ tasks.addEventListener('click', function (event) {
 tasks.addEventListener('click', function (event) {
   if (event.target.closest('.write_task_btn')) {
     event.preventDefault();//отключим перезагрузку страницы
-    const days = document.querySelector('.days');
     const form = tasks.querySelector('form');
-    const day = document.querySelector('.active_day').textContent;
-    const month = document.querySelector('.month_name').textContent;
-    const year = document.querySelector('.year_name').textContent;
-    //получаем данные из формы
     const formData = new FormData(form);
-    const text = formData.get('text');
-    const type = formData.get('type');
-    const prior = formData.get('prior'); 
-    const category = formData.get('category');
-    WriteInArr(year, month, day, type, category, prior, text);
-    TasksInMonth(year, month, days)//обновим меткина календаре
-    OpenMonthList(year);//обновляем метки в боковой панели
-    DellChild(tasks);
-    tasks.appendChild(ShowTasks(year, month, day));
+    if (FormValid(formData)) {
+      const days = document.querySelector('.days');
+      const day = document.querySelector('.active_day').textContent;
+      const month = document.querySelector('.month_name').textContent;
+      const year = document.querySelector('.year_name').textContent;
+      //получаем данные из формы
+      const text = formData.get('text');
+      const type = formData.get('type');
+      const prior = formData.get('prior'); 
+      const category = formData.get('category');
+      WriteInArr(year, month, day, type, category, prior, text);
+      TasksInMonth(year, month, days)//обновим меткина календаре
+      OpenMonthList(year);//обновляем метки в боковой панели
+      DellChild(tasks);
+      tasks.appendChild(ShowTasks(year, month, day)); 
+    };
   }
 });
 /****************************************************/
